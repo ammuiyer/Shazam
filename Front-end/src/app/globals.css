@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root.light-theme {
+  /* Default theme (light) */
+  --p1: #0a5f4a;
+  --p2: #0d7259;
+  --p3: #128668;
+  --p4: #159977;
+  --p5: #18ad86;
+  --p6: #1bc194;
+
+  --s1: #f8f8f8;
+  --s2: #efefef;
+  --s3: #e6e6e6;
+  --s4: #dedede;
+  --s5: #d5d5d5;
+  --s6: #cccccc;
+}
+
+/* Dark theme colors */
+:root {
+  --p1: #17c999;
+  --p2: #4fcca5;
+  --p3: #6bd3b0;
+  --p4: #84d9bb;
+  --p5: #9ae0c6;
+  --p6: #afe6d1;
+
+  --s1: #121212;
+  --s2: #282828;
+  --s3: #3f3f3f;
+  --s4: #575757;
+  --s5: #717171;
+  --s6: #8b8b8b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* This is to hide the scrollbar in the prompt input */
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+textarea::placeholder {
+  line-height: 1.5rem;
+  vertical-align: middle;
+}
+
+textarea {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* globals.css or a suitable CSS file */
+.message {
+  display: block;
+  clear: both;
+  padding: 8px 16px;
+  border-radius: 12px;
+  margin: 2px 0;
+  max-width: 70%;
+}
+
+.user {
+  background-color: var(--p6); /* Adjusted for your green color scheme */
+  color: white;
+  align-self: flex-end;
+  margin-left: auto; /* Aligns to the right */
+}
+
+.bot {
+  background-color: var(--s6); /* A darker shade of gray to match */
+  color: white;
+  align-self: flex-start;
+  margin-right: auto; /* Aligns to the left */
+}
+
+/* Ensure scrolling is enabled and smooth */
+.flex-1.overflow-auto {
+  overflow-y: auto;
+}
