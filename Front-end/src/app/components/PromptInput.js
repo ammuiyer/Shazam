@@ -8,16 +8,35 @@ export default function PromptInput() {
   const chatContainerRef = useRef(null);
   let inputEmpty = inputValue.trim().length === 0;
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const trimmedInput = inputValue.trim();
     if (trimmedInput.length > 0) {
-      const newMessages = [
-        ...messages,
-        { id: messages.length + 1, text: trimmedInput, sender: "user" },
-        { id: messages.length + 2, text: `Echo: ${trimmedInput}`, sender: "bot" },
-      ];
-      setMessages(newMessages);
-      setInputValue("");
+      try {
+        const botResponse = await fetchBotResponse(trimmedInput);
+        const newMessages = [
+          ...messages,
+          { id: messages.length + 1, text: trimmedInput, sender: "user" },
+          { id: messages.length + 2, text: botResponse, sender: "bot" },
+        ];
+        setMessages(newMessages);
+        setInputValue("");
+      } catch (error) {
+        console.error("Failed to fetch bot response:", error);
+      }
+    }
+  }
+  
+  async function fetchBotResponse(query) {
+    const searchURL = `http://localhost:3000/frontend/get_query?query=${encodeURIComponent(query)}`;
+  
+    try {
+      const response = await fetch(searchURL);
+      if (!response.ok) throw new Error(response.statusText);
+      const json = await response.json();
+      return json.message;
+    } catch (error) {
+      console.error("Error fetching bot response:", error);
+      throw error; // Rethrow the error so handleSubmit can catch it
     }
   }
 
