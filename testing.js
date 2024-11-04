@@ -3,18 +3,13 @@ const router = express.Router();
 
 
 router.get("/test_model", async (req, res) => {
-    const queries = req.body.queries; // Expecting { "queries": [...] }
+    const dictionary = req.body;//get expect_output key and user_input
 
-    if (!Array.isArray(queries)) {
-        console.log(queries)
-        return res.status(400).send({ error: "Expected 'queries' to be an array." });
-    }
 
-    console.log("Received queries:", queries);
+    console.log("Received expected output:", dictionary.expected_output);
+    console.log("Received user input", dictionary.user_input)
 
-    queries.forEach(query => {
-        console.log("Processing query:", query);
-    });
+
 
     res.send({ message: "Queries processed successfully." });
 });
