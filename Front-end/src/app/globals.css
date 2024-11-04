@@ -1,24 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Light theme color variables */
 :root.light-theme {
-  /* Default theme (light) */
-  --p1: #0a5f4a;
-  --p2: #0d7259;
+  --p1: #ffffff; /* White text for title and sidebar links */
+  --p2: #0a5f4a; /* Dark green for hover */
   --p3: #128668;
   --p4: #159977;
   --p5: #18ad86;
   --p6: #1bc194;
 
   --s1: #f8f8f8;
-  --s2: #efefef;
+  --s2: #0a7f5a; /* Strong green for sidebar and top navigation */
   --s3: #e6e6e6;
-  --s4: #dedede;
+  --s4: #ffffff; /* White for main chat area */
   --s5: #d5d5d5;
   --s6: #cccccc;
+
+  --text-dark: #333333; /* Dark text for readability on light backgrounds */
+  --text-light: #ffffff; /* Light text for readability on dark backgrounds */
 }
 
-/* Dark theme colors */
+/* Dark theme color variables (default theme) */
 :root {
   --p1: #17c999;
   --p2: #4fcca5;
@@ -33,16 +37,85 @@
   --s4: #575757;
   --s5: #717171;
   --s6: #8b8b8b;
+
+  --text-dark: #ffffff;
+  --text-light: #000000;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
-/* This is to hide the scrollbar in the prompt input */
+/* Sidebar and header styling for light mode */
+.light-theme .sidebar, .light-theme .header {
+  background-color: var(--s2); /* Strong green background */
+  color: var(--p1); /* White text */
+}
+
+/* Set minimum height for the layout */
+body {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Sidebar styling */
+.sidebar {
+  background-color: var(--s2);
+  color: var(--p1);
+  width: 16rem; /* Consistent width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+  border-right: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Sidebar link colors */
+.sidebar a {
+  color: var(--p1);
+}
+
+.sidebar a:hover {
+  color: var(--p2); /* Dark green for hover effect */
+}
+
+/* Chat area styling */
+.light-theme .chat-area {
+  background-color: var(--s4); /* White background in light mode */
+  color: var(--text-dark); /* Dark text for readability */
+}
+
+.message {
+  display: block;
+  clear: both;
+  padding: 8px 16px;
+  border-radius: 12px;
+  margin: 2px 0;
+  max-width: 70%;
+}
+
+.user {
+  background-color: var(--p6); /* User messages in theme-matched color */
+  color: var(--text-light); /* Light text for contrast */
+  align-self: flex-end;
+  margin-left: auto; /* Aligns to the right */
+}
+
+.bot {
+  background-color: var(--s6); /* Bot messages in gray */
+  color: var(--text-light); /* Light text for contrast */
+  align-self: flex-start;
+  margin-right: auto; /* Aligns to the left */
+}
+
+/* Scrollable chat container */
+.flex-1.overflow-auto {
+  overflow-y: auto;
+}
+
+/* Styling for the prompt input area to hide scrollbar */
 textarea::-webkit-scrollbar {
   display: none;
 }
@@ -55,33 +128,4 @@ textarea::placeholder {
 textarea {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* globals.css or a suitable CSS file */
-.message {
-  display: block;
-  clear: both;
-  padding: 8px 16px;
-  border-radius: 12px;
-  margin: 2px 0;
-  max-width: 70%;
-}
-
-.user {
-  background-color: var(--p6); /* Adjusted for your green color scheme */
-  color: white;
-  align-self: flex-end;
-  margin-left: auto; /* Aligns to the right */
-}
-
-.bot {
-  background-color: var(--s6); /* A darker shade of gray to match */
-  color: white;
-  align-self: flex-start;
-  margin-right: auto; /* Aligns to the left */
-}
-
-/* Ensure scrolling is enabled and smooth */
-.flex-1.overflow-auto {
-  overflow-y: auto;
 }
