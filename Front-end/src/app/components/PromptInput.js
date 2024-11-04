@@ -27,14 +27,13 @@ export default function PromptInput() {
   }
   
   async function fetchBotResponse(query) {
-    const searchURL = "https://www.example.com"; //**fit with the actual URL of the API**
-    searchURL.concat("/", query); //**fit with the actual tag that the query must append to**
+    const searchURL = `http://localhost:3000/frontend/get_query?query=${encodeURIComponent(query)}`;
   
     try {
-      const response = await fetch(searchURL.toString());
+      const response = await fetch(searchURL);
       if (!response.ok) throw new Error(response.statusText);
       const json = await response.json();
-      return json.entries[0].duration; //**set with the actual key within the returned json**
+      return json.message;
     } catch (error) {
       console.error("Error fetching bot response:", error);
       throw error; // Rethrow the error so handleSubmit can catch it
