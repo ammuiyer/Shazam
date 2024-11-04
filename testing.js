@@ -3,7 +3,8 @@ const router = express.Router();
 
 
 router.get("/test_model", async (req, res) => {
-    const dictionary = req.body;//get expect_output key and user_input
+    const dictionary = req.body;//get expected_output key and user_input
+    //Example: {"expected_output":"gdehbwsxjk","user_input":"fbhcjdnks"}
 
 
     console.log("Received expected output:", dictionary.expected_output);
