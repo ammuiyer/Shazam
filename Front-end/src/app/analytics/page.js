@@ -12,22 +12,35 @@ export default function Analytics() {
     errorRate: 26.27,
   });
 
-  const handleTestPrompt = () => {
+  const handleTestPrompt = async () => {
     if (prompt.trim()) {
-      // Simulate an actual response from the chatbot
-      const simulatedResponse = `Simulated response for: ${prompt}`;
+      const actualResponse = await fetchBotResponse({expected_output : expectedResponse, user_input : prompt});
 
       // Add to chat history
       setChatHistory([
         ...chatHistory,
         { type: "user", text: prompt },
         { type: "expected", text: expectedResponse },
-        { type: "actual", text: simulatedResponse },
+        { type: "actual", text: actualResponse },
       ]);
 
       // Clear inputs after submission
       setPrompt("");
       setExpectedResponse("");
+    }
+  };
+
+  async function fetchBotResponse(query) {
+    const searchURL = `http://localhost:3000/testing/test_model?query=${encodeURIComponent(JSON.stringify(query))}`;
+  
+    try {
+      const response = await fetch(searchURL);
+      if (!response.ok) throw new Error(response.statusText);
+      const json = await response.json();
+      return json.message;
+    } catch (error) {
+      console.error("Error fetching bot response:", error);
+      throw error; // Rethrow the error so handleSubmit can catch it
     }
   };
 
