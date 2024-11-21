@@ -1,3 +1,5 @@
+'use client'
+
 import type { ComponentProps } from 'react';
 
 import { type SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
@@ -16,7 +18,7 @@ export function SidebarToggle({
       <Button
         onClick={toggleSidebar}
         variant="outline"
-        className="md:px-2 md:h-fit"
+        className="md:px-2.5 py-2.5 md:h-fit"
       >
         <SidebarLeftIcon size={16} />
       </Button>

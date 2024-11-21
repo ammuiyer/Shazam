@@ -2,6 +2,8 @@
 
 import { useWindowSize } from 'usehooks-ts';
 
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { SidebarToggle } from '@/components/sidebar-toggle';
 import { ThemeSwitcher } from '@/components/themeswitcher';
 import { BetterTooltip } from '@/components/ui/tooltip';
@@ -20,6 +22,15 @@ export function ChatHeader() {
             <ThemeSwitcher />
         </BetterTooltip>
       )}
+            <Button
+        className=" hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
+        asChild
+      >
+        <Link href='/signin'>
+        
+          Sign in
+        </Link>
+      </Button>
     </header>
   );
 }

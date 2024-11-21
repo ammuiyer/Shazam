@@ -35,6 +35,19 @@ export function Chat() {
     setIsLoading(true);
 
     // Simulate a chatbot response with @echo functionality
+    //setTimeout(async () => {
+    //const botResponse = {
+    //  id: `${Date.now() + 1}`,
+    //  role: 'bot',
+    //  content: `@echo ${await fetchBotResponse(userMessage.content)}`, // Fetch bot response and prepend @echo
+    //  partialContent: '', // For gradual appearance
+    //};
+    //
+      // Append bot response with gradual typing effect
+    //setMessages((prev) => [...prev, botResponse]);
+    //setIsLoading(false);
+    //simulateTypingEffect(botResponse.id, botResponse.content);
+    //}, 1000); // Simulate a 1-second delay
     setTimeout(async () => {
       const botResponse = {
         id: `${Date.now() + 1}`,
@@ -68,25 +81,25 @@ export function Chat() {
   // Function to simulate typing effect
   const simulateTypingEffect = (messageId: string, fullContent: string) => {
     let currentIndex = 0;
-
+  
     const typingInterval = setInterval(() => {
       setMessages((prev) =>
         prev.map((message) =>
           message.id === messageId
             ? {
                 ...message,
-                partialContent: fullContent.slice(0, currentIndex + 1),
+                partialContent: fullContent.slice(0, currentIndex + 3),
               }
             : message,
         ),
       );
-
+  
       currentIndex++;
-
+  
       if (currentIndex === fullContent.length) {
         clearInterval(typingInterval);
       }
-    }, 50); // Adjust typing speed here (50ms per character)
+    }, 0); // Reduce to 0ms for maximum speed
   };
 
   return (
