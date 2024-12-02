@@ -16,7 +16,7 @@ export function ModeSwitcher({
 
   return (
     <BetterTooltip
-      content={mode === 'manual' ? 'Switch to Fetch Mode' : 'Switch to Manual Mode'}
+      content={mode === 'manual' ? 'Switch to Automatic Testing' : 'Switch to Manual Testing'}
       align="start"
     >
       <button
