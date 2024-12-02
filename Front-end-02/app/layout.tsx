@@ -7,7 +7,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'ISO New England',
-  description: 'Dashboard for ISO New England chatbot',
+  description: 'ISO New England chatbot',
 };
 
 export const viewport = {

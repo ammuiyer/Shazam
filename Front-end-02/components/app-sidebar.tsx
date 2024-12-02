@@ -37,7 +37,7 @@ export function AppSidebar() {
               <span className="text-lg font-semibold">Chatbot</span>
             </Link>
             <Link
-              href="/dashboard"
+              href="/analytics"
               onClick={() => {
                 setOpenMobile(false);
               }}
