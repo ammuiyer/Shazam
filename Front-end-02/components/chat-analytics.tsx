@@ -9,6 +9,8 @@ import { OverviewAnalytics } from './overview-analytics';
 import { ChatHeader } from '@/components/chat-header';
 import { AnalyticsHeader } from '@/components/analytics-header';
 import { Textarea } from './ui/textarea';
+import { AnalyticsChart } from './analytics-chart';
+import { F1ScoreChart } from './f1-score-chart';
 
 export function ChatAnalytics() {
   const [messages, setMessages] = useState<
@@ -163,11 +165,14 @@ export function ChatAnalytics() {
       <div className="flex flex-col gap-6 w-full max-w-4xl mx-auto h-svh">
         <h2 className="text-xl font-bold">Testing Tools & Metrics</h2>
         <div className="p-4 border border-gray-300 rounded-lg bg-card text-card-foreground shadow-sm">
-          <p>Tool 1: Placeholder for analytics tool or metric visualization</p>
+          <AnalyticsChart />
         </div>
         <div className="p-4 border border-gray-300 rounded-lg bg-card text-card-foreground shadow-sm">
-          <p>Tool 2: Placeholder for testing interface or additional metrics</p>
+          <F1ScoreChart />
         </div>
+        {/* <div className="p-4 border border-gray-300 rounded-lg bg-card text-card-foreground shadow-sm">
+          <p>Tool 2: Placeholder for testing interface or additional metrics</p>
+        </div> */}
       </div>
     </div>
   );
